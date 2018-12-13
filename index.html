@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-123" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-Linux-修改sshh密码" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/12/13/123/" class="article-date">
-  <time datetime="2018-12-13T09:30:20.000Z" itemprop="datePublished">2018-12-13</time>
+    <a href="/2018/12/13/Linux-修改sshh密码/" class="article-date">
+  <time datetime="2018-12-13T09:39:31.000Z" itemprop="datePublished">2018-12-13</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/13/123/">123</a>
+      <a class="article-title" href="/2018/12/13/Linux-修改sshh密码/">Linux 修改sshh密码</a>
     </h1>
   
 
@@ -84,11 +84,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>修改SSH密码。登录ssh后, 通过命令:<br>passwd {用户名}<br>做修改即可.</p>
+<p>修改密码的命令 首先输入passwd 回车 出现：(current) UNIX password: 然后输入现在所用的密码 回车 出现：New password: 再输入新密码（新的密码必须是字母数字都有，不然的话不成功） 然后回车 与Windows下不同的是，输入的密码不会有星号代替，也出现明文修改密码的命令<br>首先输入passwd 回车<br>出现：(current) UNIX password:<br>然后输入现在所用的密码 回车<br>出现：New password:<br>再输入新密码（新的密码必须是字母数字都有，不然的话不成功） 然后回车</p>
+<p>linux修改ssh端口22<br>vi /etc/ssh/ssh_config<br>vi /etc/ssh/sshd_config</p>
+<p>然后修改为port 8888<br>以root身份service sshd restart (redhat as3)<br>使用putty,端口8888</p>
+<p>Linux下SSH默认的端口是22,为了安全考虑，现修改SSH的端口为1433,修改方法如下 ：<br>/usr/sbin/sshd -p 1433</p>
+<p>为增强安全，先增加一个普通权限的用户： </p>
+<p>#useradd uploader</p>
+<p>#passwd uploader</p>
+<p>//设置密码</p>
+<p>生产机器禁止ROOT远程SSH登录： </p>
+<p>#vi /etc/ssh/sshd_config</p>
+<p>把<br>PermitRootLogin yes<br>改为<br>PermitRootLogin no<br>重启sshd服务 </p>
+<p>#service sshd restart</p>
+<h2 id="远程管理用普通用户uploader登录，然后用-su-root-切换到root用户拿到最高权限。"><a href="#远程管理用普通用户uploader登录，然后用-su-root-切换到root用户拿到最高权限。" class="headerlink" title="远程管理用普通用户uploader登录，然后用 su root 切换到root用户拿到最高权限。"></a>远程管理用普通用户uploader登录，然后用 su root 切换到root用户拿到最高权限。</h2><p>作者：波波仔86<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/bobozai86/article/details/80318403" target="_blank" rel="noopener">https://blog.csdn.net/bobozai86/article/details/80318403</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/13/123/" data-id="cjpmeleop0002gov789dzwetw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/13/Linux-修改sshh密码/" data-id="cjpmeydfz0000l8v74p48pqea" class="article-share-link">Share</a>
       
       
     </footer>
@@ -144,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/08/一句话木马/" data-id="cjpmeleom0001gov7d56lzaci" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/08/一句话木马/" data-id="cjpmeydg80002l8v7z5jx7x4j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/08/hello-world/" data-id="cjpmeleoh0000gov70gi9mlk6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/08/hello-world/" data-id="cjpmeydg50001l8v7d2mbjdit" class="article-share-link">Share</a>
       
       
     </footer>
@@ -230,7 +244,7 @@
       <ul>
         
           <li>
-            <a href="/2018/12/13/123/">123</a>
+            <a href="/2018/12/13/Linux-修改sshh密码/">Linux 修改sshh密码</a>
           </li>
         
           <li>
