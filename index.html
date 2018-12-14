@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-123" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-Nmap命令" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/12/14/123/" class="article-date">
-  <time datetime="2018-12-14T08:04:39.000Z" itemprop="datePublished">2018-12-14</time>
+    <a href="/2018/12/14/Nmap命令/" class="article-date">
+  <time datetime="2018-12-14T08:18:11.000Z" itemprop="datePublished">2018-12-14</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/14/123/">123</a>
+      <a class="article-title" href="/2018/12/14/Nmap命令/">Nmap命令</a>
     </h1>
   
 
@@ -84,12 +84,53 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2018/12/14/123/D:/Erics\网络安全\博客\Hexo\source\_posts\123\1.png" alt=""></p>
+        <h3 id="端口状态"><a href="#端口状态" class="headerlink" title="端口状态"></a>端口状态</h3><h3 id="探测主"><a href="#探测主" class="headerlink" title="探测主"></a>探测主</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">状态</th>
+<th style="text-align:center">详细的参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">open</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">close</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">filtered</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">unfiltered</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">open\</td>
+<td style="text-align:center">filtered</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="机存活常用方式"><a href="#机存活常用方式" class="headerlink" title="机存活常用方式"></a>机存活常用方式</h3><p>（1）-sP ：进行ping扫描 </p>
+<p>打印出对ping扫描做出响应的主机,不做进一步测试(如端口扫描或者操作系统探测)： </p>
+<p>下面去扫描10.0.3.0/24这个网段的的主机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sP 10.0.3.0/24</span><br></pre></td></tr></table></figure>
+<p>这个命令可以用于探测局域网有哪些机器 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@B ~]# nmap -sP 10.0.3.0/24</span><br><span class="line"> </span><br><span class="line">Starting Nmap 5.51 ( http://nmap.org ) at 2016-12-29 11:24 CST</span><br><span class="line">Nmap scan report for 10.0.3.1</span><br><span class="line">Host is up (0.0079s latency).</span><br><span class="line">Nmap scan report for 10.0.3.2</span><br><span class="line">Host is up (0.0046s latency).</span><br><span class="line">Nmap scan report for 10.0.3.3</span><br><span class="line">Host is up (0.0037s latency).</span><br><span class="line">Nmap done: 256 IP addresses (3 hosts up) scanned in 10.01 seconds</span><br><span class="line">[root@B ~]#</span><br></pre></td></tr></table></figure>
+<p>（2） -sn：  Ping Scan - disable port scan  #ping探测扫描主机， 不进行端口扫描 （测试过对方主机把icmp包都丢弃掉，依然能检测到对方开机状态） </p>
+<p><img src="/2018/12/14/Nmap命令/1.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/14/123/" data-id="cjpnr1fzy00002kv7rp6qmkkh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/14/Nmap命令/" data-id="cjpns30af0001c4v7dhskh5tc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/13/Linux-修改ssh密码/" data-id="cjpnr1g0500012kv7b931wrob" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/13/Linux-修改ssh密码/" data-id="cjpns30a70000c4v7e1k3kvcm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -195,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/08/一句话木马/" data-id="cjpnr1g0900032kv7pfbqfuxx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/08/一句话木马/" data-id="cjpns30aw0003c4v7ma1cd81s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -240,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/08/hello-world/" data-id="cjpnr1g0800022kv7drue9td4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/08/hello-world/" data-id="cjpns30ai0002c4v7mbbq3qdo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,7 +322,7 @@
       <ul>
         
           <li>
-            <a href="/2018/12/14/123/">123</a>
+            <a href="/2018/12/14/Nmap命令/">Nmap命令</a>
           </li>
         
           <li>
