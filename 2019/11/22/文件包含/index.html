@@ -40,13 +40,18 @@
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/21.png">
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/22.png">
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/23.png">
+<meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/A.png">
+<meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/B.png">
+<meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/C.png">
+<meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/D.png">
+<meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/E.png">
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/29.png">
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/24.png">
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/25.png">
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/26.png">
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/27.png">
 <meta property="og:image" content="https://erics-six.github.io/2019/11/22/文件包含/28.png">
-<meta property="og:updated_time" content="2019-11-22T11:34:00.173Z">
+<meta property="og:updated_time" content="2019-11-22T13:28:37.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件包含">
 <meta name="twitter:description" content="文件包含[TOC] 0x01文件包含简介服务器在执行php文件时，可以通过文件包含函数加载另一个文件中的php代码,并 且当php来执行，这表示可以创建供所有网页引用的标准页眉或菜单文件。当页眉需要更新时，只要更新一个包含文件就可以了，或者想要向网站添加一张新页面时，只需要修改一下菜单文件，而不需要更新网页中的所有网页的链接 文件包含函数php中文件包含函数有以下四种 1234require()r">
@@ -238,118 +243,15 @@
 <p><img src="/2019/11/22/文件包含/22.png" alt="22"></p>
 <p><img src="/2019/11/22/文件包含/23.png" alt="23"></p>
 <h5 id="php-filter"><a href="#php-filter" class="headerlink" title="php://filter"></a>php://filter</h5><p>一般用于任意文件读取，有时可以用于getshell，在双off的情况下也能够使用，它是一种元封装器，用于数据流打开筛选过滤应用。对于一体式(all-in-one)的文件函数很有效，类似readfile()、file()、file_get_contents()，在数据流读取之前没有机会使用其他过滤器,<strong><em>因为有时候读取一些敏感的php代码，就需要用到过滤器</em></strong></p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>resource=&lt;要过滤的数据流&gt;</td>
-<td>这个参数是必须的。它指定了你要筛选过滤的数据流。</td>
-</tr>
-<tr>
-<td><em>read=&lt;读链的筛选列表&gt;</em></td>
-<td>该参数可选。可以设定一个或多个过滤器名称，以管道符(\</td>
-<td>)分隔</td>
-</tr>
-<tr>
-<td><em>write=&lt;写链的筛选列表&gt;</em></td>
-<td>该参数可选。可以设定一个或多个过滤器名称，以管道符(\</td>
-<td>)分隔</td>
-</tr>
-<tr>
-<td><em>&lt;；两个链的筛选列表&gt;</em></td>
-<td>任何没有以 <em>read=</em> 或 <em>write=</em> 作前缀 的筛选器列表会视情况应用于读或写链。</td>
-</tr>
-</tbody>
-</table>
+<p><img src="/2019/11/22/文件包含/A.png" alt=""></p>
 <p>ex：</p>
 <div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">...x=php://filter/read=convert.base64-encode/resource=index.php(url)</span><br><span class="line">2.</span><br><span class="line">&lt;?php</span><br><span class="line">readfile(“php://filter/read=string.toupper/resource=http://www.example.com”);</span><br><span class="line">//会以大写字母输出www.example.com的内容  </span><br><span class="line">?&gt;</span><br><span class="line">3.</span><br><span class="line">&lt;?php</span><br><span class="line">readfile(“php://filter/read=string.toupper|string.rot13/resource=http://www.example.com”); //会在上面的基础上再进行rot13加密</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></div>
 <p>read去掉有时候可以绕过一些waf</p>
 <p>下面是收集的各种过滤器</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">字符串过滤器</th>
-<th style="text-align:left">定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">string.rot13</td>
-<td style="text-align:left">rot13加密，相当于str_rot13()</td>
-</tr>
-<tr>
-<td style="text-align:left">string.toupper</td>
-<td style="text-align:left">字符全部大写，相当于strtoupper()</td>
-</tr>
-<tr>
-<td style="text-align:left">string.tolower</td>
-<td style="text-align:left">字符全部小写,相当于strtolower()</td>
-</tr>
-<tr>
-<td style="text-align:left">string.strip_tags</td>
-<td style="text-align:left">去除空字符、HTML和PHP标记,相当于strip_tags()</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">编码过滤器</th>
-<th style="text-align:left">定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">convert.base64-encode/decode</td>
-<td style="text-align:left">base64编码/解码</td>
-</tr>
-<tr>
-<td style="text-align:left">convert.quoted-printable-encode/decode</td>
-<td style="text-align:left">quoted-printable编码/解码</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">压缩过滤器</th>
-<th style="text-align:left">定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">zlib.deflate/inflate</td>
-<td style="text-align:left">在本地文件系统中创建 gzip 兼容文件的方法，但不产生命令行工具如 gzip的头和尾信息。只是压缩和解压数据流中的有效载荷部分。</td>
-</tr>
-<tr>
-<td style="text-align:left">bzip2.compress/decompress</td>
-<td style="text-align:left">同上，在本地文件系统中创建 bz2 兼容文件的方法。</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">加密过滤器</th>
-<th style="text-align:left">定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">mcrypt.*</td>
-<td style="text-align:left">libmcrypt 对称加密算法</td>
-</tr>
-<tr>
-<td style="text-align:left">mdecrypt.*</td>
-<td style="text-align:left">libmcrypt 对称解密算法</td>
-</tr>
-</tbody>
-</table>
+<p><img src="/2019/11/22/文件包含/B.png" alt=""></p>
+<p><img src="/2019/11/22/文件包含/C.png" alt=""></p>
+<p><img src="/2019/11/22/文件包含/D.png" alt=""></p>
+<p><img src="/2019/11/22/文件包含/E.png" alt=""></p>
 <h6 id="quoted-printable编码解码"><a href="#quoted-printable编码解码" class="headerlink" title="quoted-printable编码解码"></a>quoted-printable编码解码</h6><p>quoted-printable可打印字符引用编码，多用途互联网邮件扩展(MIME)，的一种实现方式，MIME是一个互联网标准，扩展了电子邮件标准，致力于使其能够支持非ASCII字符、二进制格式附件等多种格式的邮件消息。目前http协议中，很多采用MIME框架！quoted——printable就是用一些可打印常用字符，表示一个字节(8位)中所有非打印字符方法</p>
 <p>quoted-printable编码方法</p>
 <p>任何一个8位的字节值可编码位3个字符：一个等号“=”后面跟随两个16进制数字，表示该字节数值，例如， ASCII码换页符（十进制值为12）可以表示为”=0C”, 等号”=”（十进制值为61）必须表示为”=3D”. 除了可打印ASCII字符与换行符以外，所有字符必须表示为这种格式. </p>
