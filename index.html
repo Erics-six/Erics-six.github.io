@@ -85,7 +85,7 @@
 <p>分析：数据包交互，结果display</p>
 <p>6、多区域网路（答辩补充）：环境拓扑规划、设备配置命令</p>
 <p>分析：不同网络类型下1类LSA有什么不同；1、2类LSA是否跨区传播；总结</p>
-<h3 id="四、成果展示（以图片或系统截图等形式体现）"><a href="#四、成果展示（以图片或系统截图等形式体现）" class="headerlink" title="四、成果展示（以图片或系统截图等形式体现）"></a>四、成果展示（以图片或系统截图等形式体现）</h3><h4 id="一：单区域点对点网络"><a href="#一：单区域点对点网络" class="headerlink" title="一：单区域点对点网络"></a>一：单区域点对点网络</h4><h5 id="1、网络拓扑图"><a href="#1、网络拓扑图" class="headerlink" title="1、网络拓扑图"></a>1、网络拓扑图</h5><p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\.deploy_git\2020\07\04\ospf协议分析\1.jpg" alt="1"></p>
+<h3 id="四、成果展示（以图片或系统截图等形式体现）"><a href="#四、成果展示（以图片或系统截图等形式体现）" class="headerlink" title="四、成果展示（以图片或系统截图等形式体现）"></a>四、成果展示（以图片或系统截图等形式体现）</h3><h4 id="一：单区域点对点网络"><a href="#一：单区域点对点网络" class="headerlink" title="一：单区域点对点网络"></a>一：单区域点对点网络</h4><h5 id="1、网络拓扑图"><a href="#1、网络拓扑图" class="headerlink" title="1、网络拓扑图"></a>1、网络拓扑图</h5><p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\.deploy_git\2020\07\04\ospf协议分析\1.jpg" alt="1"></p>
 <h5 id="2、在R1跟R2之间的链路先开启抓包，然后shutdown-R2的G0-0-0端口，然后开始下面的配置"><a href="#2、在R1跟R2之间的链路先开启抓包，然后shutdown-R2的G0-0-0端口，然后开始下面的配置" class="headerlink" title="2、在R1跟R2之间的链路先开启抓包，然后shutdown R2的G0/0/0端口，然后开始下面的配置"></a>2、在R1跟R2之间的链路先开启抓包，然后shutdown R2的G0/0/0端口，然后开始下面的配置</h5><p>R1</p>
 <p>[R1]router id 1.1.1.1</p>
 <p>[R1-GigabitEthernet0/0/0]ospf network-type p2p</p>
@@ -102,78 +102,78 @@
 <p>[R2-ospf-1]area 0.0.0.0</p>
 <p>[R2-ospf-1-area-0.0.0.0]network 192.168.1.0 0.0.0.255</p>
 <p>[R2-ospf-1-area-0.0.0.0]network 192.168.2.0 0.0.0.255</p>
-<h5 id="3、查看wireshark抓取到的包"><a href="#3、查看wireshark抓取到的包" class="headerlink" title="3、查看wireshark抓取到的包"></a>3、查看wireshark抓取到的包</h5><p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\2.jpg" alt="2"></p>
+<h5 id="3、查看wireshark抓取到的包"><a href="#3、查看wireshark抓取到的包" class="headerlink" title="3、查看wireshark抓取到的包"></a>3、查看wireshark抓取到的包</h5><p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\2.jpg" alt="2"></p>
 <p>从该包列表可以知道：</p>
 <p>1) 网络类型为P2P的OSPF协议均为组播形式发送报文</p>
 <p>2) 可以看到1.2的路由器先发送了hello报文</p>
 <p>3) 点开看看2号包</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\3.jpg" alt="3"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\3.jpg" alt="3"></p>
 <p>在网络类型为P2P的情况下，要求报文发送时间间隔，options，路由失效时间一致时，才能建立起邻居关系</p>
 <p>在广播网络的情况下，子网掩码必须要一样才能建立起邻居关系</p>
 <p>版本号为2，是类型为hello的ospf报文，router id为2.2.2.2（router id是路由器的标识符，唯一的），该hello报文每隔10s发一次，看该包列表就能大概看到2号hello包跟3号hello包发送相差时间实差不多10秒的。当2.2.2.2路由器40s没接收到邻居发的hello报文时，会判断该邻居不存在</p>
 <p>4) 2号包是2.2.2.2发的hello报文，按照理论，他的邻居1.1.1.1路由器接收到该hello报文，由down状态进入到init状态，因为该hello报文里的邻居并没有1.1.1.1路由器；然后1.1.1.1又通过组播的方式发送了一份hello报文3号包，该报文里面必须有邻居2.2.2.2。看一下3号包</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\4.jpg" alt="4"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\4.jpg" alt="4"></p>
 <p>可以看到1.1.1.1.发的hello报文里，里面有邻居2.2.2.2，则2.2.2.2接收到该包进入2way状态，因为P2P网络不选举DR、BDR,然后就可以进入exstart状态，开始DD主从</p>
 <p>5) 16号包，该包是2.2.2.2发的hello报文，按照理论，里面的邻居需要有1.1.1.1</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\5.jpg" alt="5"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\5.jpg" alt="5"></p>
 <p>可以看到2.2.2.2发的hello报文里面有邻居1.1.1.1，按照理论1.1.1.1此时才进入了2way状态，再直接进入进入exstart状态，发送DD主从报文。但是实际上并不用等1.1.1.1接收到2.2.2.2发送的那个hello报文，1.1.1.1就能进入到2way状态。</p>
 <p>6) 2.2.2.2发送了一个DD报文4号包</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\6.jpg" alt="6"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\6.jpg" alt="6"></p>
 <p>Init为1时代表在选主从；More为1时代表后面还有数据；Master为1时代表该路由器为主路由器，刚刚开始所有路由器都是为1，认为自己是主路由器，会根据接口优先级选主，越大越优先，若接口优先级一样，则会根据Router id选主从，也是越大越优先</p>
 <p>2.2.2.2发送的这个DD报文是正在选主从，并且后面还有数据，2.2.2.2认为自己是主路由器，它的序列号为485</p>
 <p>但在P2P网络类型里面并不需要选DR、BDR，直接2Way状态进入到Exstart状态</p>
 <p>7) 1.1.1.1发送了一个DD报文5号包</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\7.jpg" alt="7"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\7.jpg" alt="7"></p>
 <p>1.1.1.1发送的这个DD报文是正在选主从，并且后面还有数据，1.1.1.1认为自己是主路由器，序列号为492</p>
 <p>8) 两个DD主从包几乎是同一时间发，2.2.2.2的Router id更大，所以2.2.2.2是D主路由器，1.1.1.1跟2.2.2.2都进入exchange状态，开始发送DD摘要</p>
 <p>在1.1.1.1，2.2.2.2上通过命令display ospf peer</p>
 <p>1.1.1.1</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\8.jpg" alt="8"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\8.jpg" alt="8"></p>
 <p>2.2.2.2</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\9.jpg" alt="9"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\9.jpg" alt="9"></p>
 <p>跟抓包分析的结果一样，R2是主，R1是从</p>
 <p>9) 1.1.1.1发送DD摘要6号包，第一个DD摘要</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\10.jpg" alt="10"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\10.jpg" alt="10"></p>
 <p>可以看到他的序列号是从485开始，因为刚刚选主从，2.2.2.2是主，它发的序列号是485，主路由器决定使用的序列号，所以必须从485开始，该DD摘要里带着LSA链路通告</p>
 <p>10) 2.2.2.2发了一个DD摘要8号包，第二个DD摘要</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\11.jpg" alt="11"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\11.jpg" alt="11"></p>
 <p>序列号是接着485，从486开始，看到MS位为1，代表2.2.2.2主路由器</p>
 <p>11) 1.1.1.1回了一个DD摘要11号包，第三个DD摘要</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\12.jpg" alt="12"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\12.jpg" alt="12"></p>
 <p>它是一个空摘要，主要起确认作用。序列号为486，告诉对方自己收到了序列号为486的包了</p>
 <p>12) 接下来1.1.1.1,2.2.2.2可以进入到loading状态，开始发送LSR,LSU进行lsdb的同步</p>
 <p>13) 2.2.2.2发送LSR，7号包</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\13.jpg" alt="13"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\13.jpg" alt="13"></p>
 <p>2.2.2.2请求1.1.1.1的LSA</p>
 <p>14) 1.1.1.1回了两个LSU包</p>
 <p>LSU包里面带了一条1类LSA，由区域内每台路由器产生。</p>
 <p>​    i．传播范围：泛洪只能在一个区域内，不能穿越ABR，也就是到ABR就截止。</p>
 <p>​    ii．区域内的每个路由器接口当被宣告进OSPF进程时，每台路由器都会产生一条一类LSA（注：每台路由器不管宣告了多少个接口进入ospf协议，路由器只会产生一条一类LSA）。这里ABR除外，因为ABR连接多个区域，1类LSA只能在一个区域内传播，所以它会产生多个1类LSA，向多个区域传递一类LSA。</p>
 <p>Router LSA格式</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\14.jpg" alt="14"></p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\15.jpg" alt="15"></p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\16.jpg" alt="16"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\14.jpg" alt="14"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\15.jpg" alt="15"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\16.jpg" alt="16"></p>
 <p>根据Link State ID知道生成该LSA的Router Id是1.1.1.1</p>
 <p>通告路由器是1.1.1.1</p>
 <p>由Type知道R1连接到stub网络，为路由信息。所接入的目标是192.168.1.0/24 网段</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\17.jpg" alt="17"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\17.jpg" alt="17"></p>
 <p>后面又更新了1.1.1.1的1类LSA链路通告，多了个Type类型为P2P的链接，为拓扑信息。1.1.1.1路由器所接入的目标是2.2.2.2，连接的数据是192.168.1.1</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\18.jpg" alt="18"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\18.jpg" alt="18"></p>
 <p>15) 2.2.2.2发LSACK进行确认</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\19.jpg" alt="19"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\19.jpg" alt="19"></p>
 <p>根据Sequence Number跟验证，可知这个包是对14号包的确认</p>
 <p>16) 1.1.1.1也同理发送LSR,2.2.2.2回两个LSU，1.1.1.1发LSACK进行确认，最后都进入full全链接状态</p>
 <p>17) 在1.1.1.1，2.2.2.2上输入命令display ospf lsdb</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\20.jpg" alt="20"></p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\21.jpg" alt="21"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\20.jpg" alt="20"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\21.jpg" alt="21"></p>
 <p>可以看到1.1.1.1，2.2.2.2上Sequence跟抓包里抓到的Sequence是一样的</p>
 <p>18) 在1.1.1.1，2.2.2.2上输入命令display ospf lsdb router</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\22.jpg" alt="22"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\22.jpg" alt="22"></p>
 <p>2.2.2.2的seq#、chksum跟1.1.1.1回的LSAck包里的数据一样</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\23.jpg" alt="23"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\23.jpg" alt="23"></p>
 <p>同理，1.1.1.1seq#、chksum跟2.2.2.2回的LSAck包里的数据一样</p>
-<p><img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\24.jpg" alt="24"></p>
-<p> <img src="/2020/07/04/ospf协议分析/D:/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\25.jpg" alt="25"></p>
+<p><img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\24.jpg" alt="24"></p>
+<p> <img src="/2020/07/04/ospf协议分析/Erics\wanluoanquan\博客\Hexo\source\_posts\ospf协议分析\25.jpg" alt="25"></p>
 
       
     </div>
